@@ -1,0 +1,5 @@
+services:
+  franka-control:
+    image: franka
+    network_mode: host
+    command: roslaunch franka_control franka_control.launch robot_ip:=172.16.0.2 load_gripper:=true
