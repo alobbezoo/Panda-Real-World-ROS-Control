@@ -16,6 +16,7 @@ services:
   bridge:
     build: .
     network_mode: host
+    restart: unless-stopped
     depends_on:
       - main
       - moveit

@@ -10,9 +10,11 @@ import rospy
 import moveit_commander
 import sys
 from std_msgs.msg import Float64MultiArray
+from std_msgs.msg import String
 
 moveit_commander.roscpp_initialize(sys.argv)
 rospy.init_node('move_group_python_interface', anonymous=True)
+joint_pub = rospy.Publisher('/bridge/joint_angles/success', String, queue_size=10)
 
 robot = moveit_commander.RobotCommander()
 
@@ -44,6 +46,12 @@ def joint_angles(joint_goals):
 	print("MESSAGE!")
 	group.go(joint_goals.data, wait=True)
 	group.stop()
+	talker("joints")
+
+def talker(kind)
+	if kind == "joints":
+		rospy.loginfo("ok")
+		joint_pub.publish("ok")
 
 if __name__ == '__main__':
     listener()
